@@ -1,41 +1,46 @@
 {% load static i18n %}
 <div class="mb-2">
-  <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom shadow-sm">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="{% url 'home' %}">Canary</a>
+  <nav class="navbar navbar-expand-md fixed-top navbar-light bg-white border-bottom">
+    <div class="container">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{{ STATIC_URL }}images/canary-logo.svg" width="40" height="40" alt="" loading="lazy">
+        Canary
+      </a>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item ml-3 mr-3 active">
-          <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'about' %}">About</a>
-        </li>
-      </ul>
-      <ul class="nav justify-content-end">
-        {% if request.user.is_authenticated %}
-          <li class="nav-item">
-            {# URL provided by django-allauth/account/urls.py #}
-            <a class="btn btn-outline-success" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item ml-3 mr-3 active">
+            <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            {# URL provided by django-allauth/account/urls.py #}
-            <a class="btn btn-outline-success" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
+            <a class="nav-link" href="{% url 'about' %}">About</a>
           </li>
-        {% else %}
-          <li class="nav-item mr-3">
-            {# URL provided by django-allauth/account/urls.py #}
-            <a id="log-in-link" class="btn btn-sm btn-outline-primary" href="{% url 'account_login' %}">{% trans "LOGIN" %}</a>
-          </li>
-          <li class="nav-item">
-            {# URL provided by django-allauth/account/urls.py #}
-            <a id="sign-up-link" class="btn btn-sm btn-primary" href="{% url 'account_signup' %}">{% trans "SIGNUP" %}</a>
-          </li>
-        {% endif %}
-      </ul>
+        </ul>
+        <ul class="nav justify-content-end">
+          {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              {# URL provided by django-allauth/account/urls.py #}
+              <a class="btn btn-outline-success" href="{% url 'users:detail' request.user.username  %}">{% trans "My Profile" %}</a>
+            </li>
+            <li class="nav-item">
+              {# URL provided by django-allauth/account/urls.py #}
+              <a class="btn btn-outline-success" href="{% url 'account_logout' %}">{% trans "Sign Out" %}</a>
+            </li>
+          {% else %}
+            <li class="nav-item mr-3">
+              {# URL provided by django-allauth/account/urls.py #}
+              <a id="log-in-link" class="btn btn-outline-primary btn-sm button" href="{% url 'account_login' %}">{% trans "LOGIN" %}</a>
+            </li>
+            <li class="nav-item">
+              {# URL provided by django-allauth/account/urls.py #}
+              <a id="sign-up-link" class="btn btn-primary btn-sm button" href="{% url 'account_signup' %}">{% trans "SIGNUP" %}</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
     </div>
   </nav>
 </div>

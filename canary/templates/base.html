@@ -28,19 +28,34 @@
 
   </head>
 
-  <body>
-    {% include "components/_navbar.html" %}
+  <body id="home">
+    <div id="wrap">
 
-    <div class="container">
-      {% include "components/_messages.html" %}
+      <div class="container h-100">
+        {% include "components/_navbar.html" %}
+        {% include "components/_messages.html" %}
 
-      {% block content %}
-        <p>Get App Usage Alerts From The Canary! This text is inherited on other pages!</p>
-      {% endblock content %}
+        {% block content %}
+          <p>Get App Usage Alerts From The Canary! This text is inherited on other pages!</p>
 
-    </div> <!-- /container -->
+<div class="jumbotron">
+  <h1 class="display-4">Hello, world!</h1>
+  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <hr class="my-4">
+  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+</div>
 
-    {% block modal %}{% endblock modal %}
+
+
+        {% endblock content %}
+
+      </div> <!-- /container -->
+
+      {% block modal %}{% endblock modal %}
+
+    </div>
+
 
     <!-- Le javascript
     ================================================== -->
