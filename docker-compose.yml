@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  canary-database:
+    container_name: canary-database
+    environment:
+      - POSTGRES_PASSWORD=canary
+    image: postgres:12-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - canary-database:/var/lib/postgresql/data/
+
+  canary-server:
+    build:
+      context: .
+    command: python manage.py runserver 0.0.0.0:8000
+    container_name: canary-server
+    depends_on:
+      - canary-database
+    env_file:
+      - ./.env
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/usr/src/app
+      - media:/usr/src/app/media
+      - static:/usr/src/app/static
+volumes:
+  canary-database:
+  media:
+  static:
